@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Operador de Archivos de Texto</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        h1 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9;
+            border-color: #0062cc;
+        }
+
+        .btn-primary:focus,
+        .btn-primary.focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+        }
+
+        .btn-primary.disabled,
+        .btn-primary:disabled {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled).active,
+        .btn-primary:not(:disabled):not(.disabled):active,
+        .show > .btn-primary.dropdown-toggle {
+            background-color: #0062cc;
+            border-color: #005cbf;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled).active:focus,
+        .btn-primary:not(:disabled):not(.disabled):active:focus,
+        .show > .btn-primary.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+        }
+
+        input[type="text"] {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    {% if archivos %}
+        <div class="container">
+            <h1>Archivos disponibles</h1> 
+            <!--bucle que remplaza \n por <br>-->
+            {% for archivo in archivos %}
+                <p>{{ archivo }}</p>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="container">
+        <h1>Contar vocales de un Archivo</h1>
+        <form method="post" id="formVocales">
+            <div class="form-group">
+                <label for="vocales">Nombre del Archivo:</label>
+                <input type="text" class="form-control" name="vocales" id="vocales">
+            </div>
+            <button type="submit" class="btn btn-primary" form="formVocales">Contar vocales</button>
+        </form>
+    </div>
+    <!-- Agrega estilos de Bootstrap a los otros formularios -->
+    <!-- Contar Lineas -->
+    <div class="container">
+        <h1>Contar Lineas de un Archivo</h1>
+        <form method="post" id="formLineas">
+            <div class="form-group">
+                <label for="lineas">Nombre del Archivo:</label>
+                <input type="text" class="form-control" name="lineas" id="lineas">
+            </div>
+            <button type="submit" class="btn btn-primary" form="formLineas">Contar Lineas</button>
+        </form>
+    </div>
+
+    <!-- Escribe en un Archivo -->
+    <div class="container">
+        <h1>Escribe en un Archivo</h1>
+        <form method="post" id="formEscribe">
+            <div class="form-group">
+                <label for="escribir">Nombre del Archivo:</label>
+                <input type="text" class="form-control" name="escribir" id="escribir">
+            </div>
+            <div class="form-group">
+                <label for="texto">Texto a escribir:</label>
+                <input type="text" class="form-control" name="texto" id="texto">
+            </div>
+            <button type="submit" class="btn btn-primary" form="formEscribe">Escribir</button>
+        </form>
+    </div>
+
+    <!-- Imprimir el contenido de un Archivo -->
+    <div class="container">
+        <h1>Imprimir el contenido de un Archivo</h1>
+        <form method="post" id="formImprime">
+            <div class="form-group">
+                <label for="imprimir">Nombre del Archivo:</label>
+                <input type="text" class="form-control" name="imprimir" id="imprimir">
+            </div>
+            <button type="submit" class="btn btn-primary" form="formImprime">Imprimir</button>
+        </form>
+    </div>
+
+    <!-- Eliminar un Archivo -->
+    <div class="container">
+        <h1>Eliminar un Archivo</h1>
+        <form method="post" id="formEliminar">
+            <div class="form-group">
+                <label for="eliminar">Nombre del Archivo:</label>
+                <input type="text" class="form-control" name="eliminar" id="eliminar">
+            </div>
+            <button type="submit" class="btn btn-primary" form="formEliminar">Eliminar</button>
+        </form>
+    </div>
+
+    <!-- Renombrar un Archivo -->
+    <div class="container">
+        <h1>Renombrar un Archivo</h1>
+        <form method="post" id="formRenom">
+            <div class="form-group">
+                <label for="renombrar">Nombre del Archivo:</label>
+                <input type="text" class="form-control" name="renombrar" id="renombrar">
+            </div>
+            <div class="form-group">
+                <label for="nuevo">Nuevo Nombre:</label>
+                <input type="text" class="form-control" name="nuevoNombre" id="nuevoNombre">
+            </div>
+            <button type="submit" class="btn btn-primary" form="formRenom">Renombrar</button>
+        </form>
+    </div>
+
+    <!-- Respaldar un Archivo -->
+    <div class="container">
+        <h1>Respaldar un Archivo</h1>
+        <form method="post" id="forRespaldar">
+            <div class="form-group">
+                <label for="respaldar">Nombre del Archivo:</label>
+                <input type="text" class="form-control" name="respaldar" id="respaldar">
+            </div>
+            <button type="submit" class="btn btn-primary" form="forRespaldar">Respaldar</button>
+        </form>
+    </div>
+
+    <!-- Copiar contenido de un Archivo a otro -->
+    <div class="container">
+        <h1>Copiar contenido de un Archivo a otro</h1>
+        <form method="post" id="formCopiar">
+            <div class="form-group">
+                <label for="copiar">Nombre del Archivo que va a copiar:</label>
+                <input type="text" class="form-control" name="copiar" id="copiar">
+            </div>
+            <div class="form-group">
+                <label for="Acopiar">Nombre del archivo en el que va a copiar:</label>
+                <input type="text" class="form-control" name="Acopiar" id="Acopiar">
+            </div>
+            <button type="submit" class="btn btn-primary" form="formCopiar">Copiar</button>
+        </form>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
